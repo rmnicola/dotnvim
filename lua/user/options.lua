@@ -1,60 +1,94 @@
 local options = {
-  -- General options
-  backup = false,                          -- creates a backup file
-  clipboard = "unnamedplus",               -- allow access to system clipboard
-  conceallevel = 0,                        -- `` is visible in markdown files
-  fileencoding = "utf-8",                  -- the encoding written to a file
-  hlsearch = true,                         -- highlight matches on search
-  ignorecase = true,                       -- ignore case in search patterns
-  mouse = "a",                             -- allow mouse movements in neovim
-  showmode = false,                        -- suppress showing mode name 
-  smartcase = true,                        -- chooses when to unset ignorecase
-  swapfile = false,                        -- do not create a swap file
-  termguicolors = true,                    -- set term gui colors
-  timeoutlen = 1000,                       -- time to wait for mapped sequence
-  title = true,                            -- set titlebar to display fname
-  undofile = true,                         -- enable persistent undo
-  updatetime = 300,                        -- faster completion in ms
-  -- End of general options
-  --
-  -- Indent options
-  autoindent = true,	               		   -- automatically indent line 
-  expandtab = true,                        -- convert tabs to spaces
-  shiftwidth = 2,                          -- number of spaces per indentation
-  smartindent = true,                      -- make indenting smarter again
-  tabstop = 2,                             -- insert 2 spaces for a tab
-  -- End of indent options
-  --
-  -- Completion options
-  completeopt = { "menuone",               -- use popup menu for completions 
-                  "noselect" },            -- no selection until user selects
-  -- End of completion options
-  --
-  -- Split options
-  splitbelow = true,                       -- all horizontal splits go below
-  splitright = true,                       -- all vertical splits go right
-  -- End of split options
-  --
-  -- Line options
-  cmdheight = 1,                           -- more space in the command line
-  colorcolumn = "80",                      -- keep a visible column line
-  cursorline = true,                       -- highlight the current line
-  number = true,                          -- set numbered lines
-  numberwidth = 4,                         -- set number column width
-  relativenumber = true,                  -- set relative numbered lines
-  scrolloff = 8,                           -- keep lines visible at each side
-  showtabline = 2,                         -- always show tabs
-  sidescrolloff = 8,			                 -- keep lines visible at each side
-  -- signcolumn = "yes",                      -- always show the sign column
-  wrap = false,                            -- display lines as one long line
-  pumheight = 10,                          -- pop up menu height
-  -- End of line options
-  --
+    -- automatically indent line 
+    autoindent = true,                       
+    -- autom. read file when changed outside of Vim 
+    autoread = true,                        
+    -- automatically write file if changed
+    autowrite = true,
+    -- keep backup file after overwriting a file
+    backup = false,
+    -- do not ring the bell for these reasons
+    belloff = "all",
+    -- wrapped line repeats indent
+    breakindent = false,
+    -- use the clipboard as the unnamed register
+    clipboard = "unnamedplus",
+    -- number of lines to use for the command-line
+    cmdheight = 1,
+    -- columns to highlight
+    colorcolumn = "80",
+    -- specify how Insert mode completion works
+    complete = ".,w,b,u,t",
+    -- options for Insert mode completion
+    completeopt = "menuone,noinsert,noselect,preview",
+    -- whether concealable text is shown or hidden
+    conceallevel = 0,
+    -- highlight the screen column of the cursor
+    cursorcolumn = false,
+    -- highlight the screen line of the cursor
+    cursorline = true,
+    -- use spaces when <Tab> is inserted
+    expandtab = true,
+    -- highlight matches with last search pattern
+    hlsearch = false,
+    -- ignore case in search patterns
+    ignorecase = true,
+    -- file encoding for multibyte text
+    fileencoding = "utf-8",
+    -- program to use for the ":make" command
+    makeprg = "make",
+    -- enable the use of mouse clicks
+    mouse = "a",
+    -- print the line number in front of each line
+    number = true,
+    -- number of columns used for the line number
+    numberwidth = 4,
+    -- list of directories searched with "gf" et.al.
+    path = ".,/usr/include,,",
+    -- maximum number of items to show in the popup menu
+     pumheight = 10,
+    -- show relative line number in front of each line
+    relativenumber = true,
+    -- number of spaces to use for (auto)indent step
+    shiftwidth = 4,
+    -- message on status line to show current mode
+    showmode = false,
+    -- minimum nr. of lines above and below cursor
+    scrolloff = 10,
+    -- list of flags, reduce length of messages
+    shortmess = "flmnrwxtToOFc",
+    -- min. nr. of columns to left and right of cursor
+    sidescrolloff = 0,
+    -- when and how to display the sign column
+    signcolumn = "yes",
+    -- no ignore case when pattern has uppercase
+    smartcase = true,
+    -- smart autoindenting for C programs
+    smartindent = true,
+    -- new window from split is below the current one
+    splitbelow = true,
+    -- new window is put right of the current one
+    splitright = true,
+    -- whether to use a swapfile for a buffer
+    swapfile = false,
+    -- number of spaces that <Tab> in file uses
+    tabstop = 2,
+    -- time out on mappings and key codes
+    timeout = true,
+    -- time out time in milliseconds
+    timeoutlen = 300,
+    -- Vim set the title of the window
+    title = true,
+    -- save undo information in a file
+    undofile = true,
+    -- after this many milliseconds flush swap file
+    updatetime = 250,
+    -- lines wrap and continue on the next line
+    wrap = false,
+    -- Enables 24-bit RGB color in the |TUI|.
+    termguicolors = true,
 }
 
-
-vim.opt.shortmess:append "c"
-
 for k, v in pairs(options) do
-	vim.opt[k] = v
+  vim.opt[k] = v
 end
