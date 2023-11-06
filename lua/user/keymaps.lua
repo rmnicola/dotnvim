@@ -54,6 +54,9 @@ keymap('n', '<S-Tab>', ':tabprevious<CR>', opts)
 -- Open a new terminal pane
 keymap('n', '<leader>t', ':split term://$SHELL<CR>', opts)
 
+-- Toggle between colorschemes
+keymap('n', '<leader>c', ':lua toggle_colorscheme()<CR>', opts)
+
 ------------------------------------------------------------------------------
 --
 -- Visual mode remaps

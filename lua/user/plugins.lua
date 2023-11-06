@@ -43,11 +43,10 @@ return packer.startup(function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
 
   -- Colorschemes
-  use "lunarvim/darkplus.nvim"
-  use "Shatur/neovim-ayu"
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- Cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
