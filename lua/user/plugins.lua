@@ -48,22 +48,15 @@ return packer.startup(function(use)
   -- Colorschemes
   use { "catppuccin/nvim", as = "catppuccin" }
 
-  -- Cmp plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
+  -- Completion
+  use "neovim/nvim-lspconfig"
+  use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lua"
-
-  -- Snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
-
-  -- LSP
-  use "neovim/nvim-lspconfig"
-  use "williamboman/nvim-lsp-installer"
+  use "hrsh7th/nvim-cmp" -- The completion plugin
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

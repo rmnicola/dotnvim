@@ -3,13 +3,6 @@ if not cmp_status_ok then
   return
 end
 
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-  return
-end
-
-require("luasnip/loaders/from_vscode").lazy_load()
-
 local check_backspace = function()
   local col = vim.fn.col "." - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
@@ -17,7 +10,7 @@ end
 
 local kind_icons = {
   Text = "",
-  Method = "󰫺",
+  Method = "M",
   Function = "󰊕",
   Constructor = "",
   Field = "",
@@ -47,8 +40,11 @@ local kind_icons = {
 cmp.setup {
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body) -- For `luasnip` users.
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
     end,
+  },
+  window = {
+    documentation = cmp.config.window.bordered(),
   },
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -63,7 +59,7 @@ cmp.setup {
     },
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
-    ["<CR>"] = cmp.mapping.confirm { select = true },
+    ["<CR>"] = cmp.mapping.confirm { select = false },
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -111,8 +107,7 @@ cmp.setup {
   },
   sources = {
     { name = "nvim_lsp" },
-    { name = "nvim_lua" },
-    { name = "luasnip" },
+    { name = "vsnip" },
     { name = "buffer" },
     { name = "path" },
   },
@@ -120,11 +115,26 @@ cmp.setup {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
-  window = {
-    documentation = cmp.config.window.bordered(),
-  },
   experimental = {
     ghost_text = false,
     native_menu = false,
   },
 }
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+    sources = {
+        mapping = cmp.mapping.preset.cmdline(),
+          { name = 'buffer' }
+        }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' }
+        }, {
+          { name = 'cmdline' }
+        })
+})
