@@ -35,7 +35,7 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Open netrw
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
+keymap("n", "<leader>e", ":NvimTreeToggle 30<cr>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -56,6 +56,13 @@ keymap('n', '<leader>t', ':split term://$SHELL<CR>', opts)
 
 -- Toggle between colorschemes
 keymap('n', '<leader>c', ':lua toggle_colorscheme()<CR>', opts)
+
+-- Telescope
+local builtin = require("telescope.builtin")
+keymap("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+keymap("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+keymap("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+keymap("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 
 ------------------------------------------------------------------------------
 --

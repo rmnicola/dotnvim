@@ -1,3 +1,5 @@
+vim.g.loaded_netrw = 1
+vim.g.netrwPlugin = 1
 local options = {
     -- automatically indent line 
     autoindent = true,                       

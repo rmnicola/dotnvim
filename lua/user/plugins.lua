@@ -58,6 +58,37 @@ return packer.startup(function(use)
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
 
+  use {
+      "nvim-treesitter/nvim-treesitter",
+      run = function()
+          local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+          ts_update()
+      end,
+  }
+
+  -- Nvimtree
+use {
+    "kyazdani42/nvim-tree.lua",
+    requires = "kyazdani42/nvim-web-devicons" ,
+    wants = "nvim-web-devicons",
+    config = function()
+      require("nvim-web-devicons").setup()
+
+      require("nvim-tree").setup {
+        hijack_cursor = true,
+        view = {
+          width = 40
+        }
+      }
+    end
+  }
+
+  -- Telescope
+  use {
+      "nvim-telescope/telescope.nvim", tag = "0.1.8",
+      requires = { { "nvim-lua/plenary.nvim" } }
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
